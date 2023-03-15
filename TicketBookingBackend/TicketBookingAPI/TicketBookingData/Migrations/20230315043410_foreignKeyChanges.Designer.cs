@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TicketBookingData;
+using TicketBooking.Data;
 
 #nullable disable
 
 namespace TicketBookingData.Migrations
 {
-    [DbContext(typeof(PubContext))]
+    [DbContext(typeof(TicketManagemetContext))]
     [Migration("20230315043410_foreignKeyChanges")]
     partial class foreignKeyChanges
     {

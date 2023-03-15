@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using TicketBookingAPI.Repository;
 using TicketBookingAPI.Services;
-using TicketBookingData;
+using TicketBooking.Data;
+using Microsoft.AspNetCore.Diagnostics;
+using TicketBookingAPI.Middleware;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,14 +16,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddDbContext<PubContext>(
+builder.Services.AddDbContext<TicketManagemetContext>(
     opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("APIConnection"))
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
-builder.Services.AddScoped<CityDetailsRepository>();
-builder.Services.AddScoped<CityDetailsService>();
+AddDependencies();
 
 var app = builder.Build();
+
+app.UseAppException();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,3 +40,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+void AddDependencies() 
+{
+    builder.Services.AddScoped<CityRepository>();
+    builder.Services.AddScoped<CityService>();
+}

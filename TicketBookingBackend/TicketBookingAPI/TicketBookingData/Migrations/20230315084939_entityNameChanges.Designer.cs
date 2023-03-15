@@ -12,8 +12,8 @@ using TicketBooking.Data;
 namespace TicketBookingData.Migrations
 {
     [DbContext(typeof(TicketManagemetContext))]
-    [Migration("20230314111819_initial")]
-    partial class initial
+    [Migration("20230315084939_entityNameChanges")]
+    partial class entityNameChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace TicketBookingData.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TicketBookingDomain.BusDetails", b =>
+            modelBuilder.Entity("TicketBookingDomain.Bus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,9 +36,6 @@ namespace TicketBookingData.Migrations
                     b.Property<string>("BusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CityDetailsId")
-                        .HasColumnType("int");
 
                     b.Property<int>("DestinationCityId")
                         .HasColumnType("int");
@@ -58,12 +55,14 @@ namespace TicketBookingData.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityDetailsId");
+                    b.HasIndex("DestinationCityId");
+
+                    b.HasIndex("SourceCityId");
 
                     b.ToTable("BusDetails");
                 });
 
-            modelBuilder.Entity("TicketBookingDomain.CityDetails", b =>
+            modelBuilder.Entity("TicketBookingDomain.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,16 +79,13 @@ namespace TicketBookingData.Migrations
                     b.ToTable("CityDetails");
                 });
 
-            modelBuilder.Entity("TicketBookingDomain.TicketDetails", b =>
+            modelBuilder.Entity("TicketBookingDomain.Ticket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BusDetailsId")
-                        .HasColumnType("int");
 
                     b.Property<int>("BusId")
                         .HasColumnType("int");
@@ -100,22 +96,19 @@ namespace TicketBookingData.Migrations
                     b.Property<bool>("IsPaymentDone")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserDetailsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BusDetailsId");
+                    b.HasIndex("BusId");
 
-                    b.HasIndex("UserDetailsId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("TicketDetails");
                 });
 
-            modelBuilder.Entity("TicketBookingDomain.UserDetails", b =>
+            modelBuilder.Entity("TicketBookingDomain.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,28 +143,36 @@ namespace TicketBookingData.Migrations
                     b.ToTable("UserDetails");
                 });
 
-            modelBuilder.Entity("TicketBookingDomain.BusDetails", b =>
+            modelBuilder.Entity("TicketBookingDomain.Bus", b =>
                 {
-                    b.HasOne("TicketBookingDomain.CityDetails", "CityDetails")
+                    b.HasOne("TicketBookingDomain.City", "DestinationCityDetails")
                         .WithMany()
-                        .HasForeignKey("CityDetailsId")
+                        .HasForeignKey("DestinationCityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CityDetails");
+                    b.HasOne("TicketBookingDomain.City", "SourceCityDetails")
+                        .WithMany()
+                        .HasForeignKey("SourceCityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DestinationCityDetails");
+
+                    b.Navigation("SourceCityDetails");
                 });
 
-            modelBuilder.Entity("TicketBookingDomain.TicketDetails", b =>
+            modelBuilder.Entity("TicketBookingDomain.Ticket", b =>
                 {
-                    b.HasOne("TicketBookingDomain.BusDetails", "BusDetails")
+                    b.HasOne("TicketBookingDomain.Bus", "BusDetails")
                         .WithMany()
-                        .HasForeignKey("BusDetailsId")
+                        .HasForeignKey("BusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TicketBookingDomain.UserDetails", "UserDetails")
+                    b.HasOne("TicketBookingDomain.User", "UserDetails")
                         .WithMany()
-                        .HasForeignKey("UserDetailsId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
