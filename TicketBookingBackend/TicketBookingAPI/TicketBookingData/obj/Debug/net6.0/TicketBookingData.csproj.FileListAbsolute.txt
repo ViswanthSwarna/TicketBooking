@@ -1,0 +1,17 @@
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.csproj.AssemblyReference.cache
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.AssemblyInfoInputs.cache
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.AssemblyInfo.cs
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.csproj.CoreCompileInputs.cache
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\bin\Debug\net6.0\TicketBookingData.deps.json
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\bin\Debug\net6.0\TicketBookingData.runtimeconfig.json
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\bin\Debug\net6.0\TicketBookingData.dll
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\bin\Debug\net6.0\TicketBookingData.pdb
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\bin\Debug\net6.0\TicketBookingDomain.dll
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\bin\Debug\net6.0\TicketBookingDomain.pdb
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.csproj.CopyComplete
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.dll
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\refint\TicketBookingData.dll
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.pdb
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\TicketBookingData.genruntimeconfig.cache
+C:\Project\TicketBooking\TicketBookingBackend\TicketBookingAPI\TicketBookingData\obj\Debug\net6.0\ref\TicketBookingData.dll
