@@ -5,6 +5,7 @@ using TicketBooking.Data;
 using Microsoft.AspNetCore.Diagnostics;
 using TicketBookingAPI.Middleware;
 using Microsoft.Extensions.Logging;
+using TicketBookingAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<TicketManagemetContext>(
     opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("APIConnection"))
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
-AddDependencies();
+builder.AddDependencies();
 
 var app = builder.Build();
 
@@ -40,10 +41,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-void AddDependencies() 
-{
-    builder.Services.AddScoped<CityRepository>();
-    builder.Services.AddScoped<CityService>();
-}
