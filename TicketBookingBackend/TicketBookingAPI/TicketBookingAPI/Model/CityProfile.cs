@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using TicketBookingDomain;
+using TicketBooking.Domain;
 
 namespace TicketBookingAPI.Model
 {
-    public class CityDetailsProfile : Profile
+    public class CityProfile : Profile
     {
-        public CityDetailsProfile() 
+        public CityProfile() 
         {
-            CreateMap<CityDetailsModel, CityDetails>()
+            CreateMap<CityModel, City>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
-            CreateMap<CityDetails, CityDetailsModel>()
+            CreateMap<City, CityModel>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
         }

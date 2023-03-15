@@ -8,37 +8,17 @@ namespace TicketBookingAPI.Controllers
     [ApiController]
     public class TicketBookingController : Controller
     {
-        private CityDetailsService _service;
-        public TicketBookingController(CityDetailsService service) 
-        { 
-            _service= service;
+        private CityService _service;
+        public TicketBookingController(CityService service)
+        {
+            _service = service;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CityDetailsModel>>> GetAllCities() 
+        [HttpGet("/{pattern}")]
+        public async Task<ActionResult<IEnumerable<CityModel>>> GetAllCities(string pattern)
         {
-            try 
-            {
-                var cities = await _service.GetAllCities();
-                return Ok(cities);
-            }catch(Exception ex) 
-            { 
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("GetAllCitiesLike/{pattern}")]
-        public async Task<ActionResult<IEnumerable<CityDetailsModel>>> GetAllCitiesLike(string pattern)
-        {
-            try
-            {
-                var cities = await _service.GetAllCitiesLike(pattern);
-                return Ok(cities);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var cities = await _service.GetAllCitiesLike(pattern);
+            return Ok(cities);
         }
     }
 }
