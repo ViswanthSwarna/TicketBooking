@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { SearchRequest } from '../models/searchRequest.model';
+import { SearchRequest } from '../models/search-request.model';
 import { BusService } from '../services/bus.service';
 
 @Component({
@@ -22,11 +22,7 @@ export class BusSearchComponent {
   constructor(private busService: BusService, private fb: FormBuilder) {}
 
   onSubmit(form: FormGroup) {
-    let searchRequest = new SearchRequest();
-    searchRequest.source = form.value.source
-    searchRequest.destination = form.value.destination
-    searchRequest.travelDate = form.value.travelDate
-    this.busService.searchForAvailableVehicle(searchRequest).subscribe({next:response=>this.onSearchSuccess(response)})
+    this.busService.searchForAvailableVehicle(form.value).subscribe({next:response=>this.onSearchSuccess(response)})
   }
 
   onSearchSuccess(response: any) {}

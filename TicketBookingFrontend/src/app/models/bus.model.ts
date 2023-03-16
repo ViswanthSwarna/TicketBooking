@@ -1,6 +1,6 @@
-export class BusModel
+export interface Bus
 {
-    Id:number = 0;
-    busName:string = "";
-    type:string= "";
+    Id:number;
+    busName:string;
+    type:string;
 }

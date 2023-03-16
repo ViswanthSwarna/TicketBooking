@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { BusModel } from '../models/bus.model';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,12 @@ export class BusService {
     if(pattern == ""){
       return of([]);
     }
-    return this.http.get('https://localhost:7069/'+pattern);
+    return this.http.get(environment.apiUrl +pattern);
   }
 
   searchForAvailableVehicle(searchBody:any):Observable<any>
   {
-    let busModel = new BusModel()
+    let busModel: any;
     busModel.busName = "Temp"
     return of([busModel]);
   }

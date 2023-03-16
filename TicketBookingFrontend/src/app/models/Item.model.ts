@@ -1,4 +1,4 @@
-export interface Item
+export interface item
 {
     Id:number;
     name:string;

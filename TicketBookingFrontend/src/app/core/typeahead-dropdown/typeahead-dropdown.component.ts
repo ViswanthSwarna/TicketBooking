@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
-import { Item } from 'src/app/models/Item.model';
+import { item } from 'src/app/models/Item.model';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { BusService } from 'src/app/services/bus.service';
 })
 export class TypeaheadDropdownComponent {
   @Input() labelText = 'label';
+  
   @Input() inputFormControl = new FormControl();
 
   dynamicId: string = 'Id' + Math.random();
@@ -22,7 +23,7 @@ export class TypeaheadDropdownComponent {
     switchMap((x) => {
       return this.busService.getAllBusStopLocations(x); //see if u can generalize this also with delegate or something
     }),
-    map((items: Item[]) => items.map((item) => item.name))
+    map((items: item[]) => items.map((x) => x.name))
   );
 
   valueChanged() {
