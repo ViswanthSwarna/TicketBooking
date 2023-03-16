@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BusSearchComponent } from './bus-search/bus-search.component';
 import { LoginSignUPComponent } from './login-sign-up/login-sign-up.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -13,6 +15,7 @@ import { LoginSignUPComponent } from './login-sign-up/login-sign-up.component';
     LoginSignUPComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(

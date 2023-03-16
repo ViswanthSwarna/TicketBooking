@@ -1,1 +1,22 @@
-placeholder coode
+<div class="container">
+  <form
+    class="form-group d-flex flex-column align-items-center"
+    [formGroup]="myForm"
+    (ngSubmit)="onSubmit(myForm)"
+  >
+    <datalist id="sourceLocation">
+      <option *ngFor="let sourceLocation of sourceLocationList">{{ sourceLocation.name}}</option>
+    </datalist>
+    <datalist id="destinationLocation">
+      <option *ngFor="let destinationLocation of destinationLocationList">{{ destinationLocation.name }}</option>
+    </datalist>
+    <label class="font-weight-bold text-primary">Source:</label>
+    <input (input)="sourceValueChanged()" formControlName="source"  placeholder="source" list="sourceLocation" />
+    <label class="font-weight-bold text-primary">Destination:</label>
+    <input (input)="destinationValueChanged()" formControlName="destination" placeholder="destination" list="destinationLocation" />
+    <label class="font-weight-bold text-primary">Date: </label>
+    <input type="date" formControlName="travelDate" />
+    <br />
+    <input class="btn btn-primary" type="submit" value="Search" />
+  </form>
+  </div>
