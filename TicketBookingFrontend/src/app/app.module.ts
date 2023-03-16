@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { BusSearchComponent } from './bus-search/bus-search.component';
 import { LoginSignUPComponent } from './login-sign-up/login-sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TypeaheadDropdownComponent } from './core/typeahead-dropdown/typeahead-dropdown.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     BusSearchComponent,
-    LoginSignUPComponent
+    LoginSignUPComponent,
+    TypeaheadDropdownComponent
   ],
   imports: [
     HttpClientModule,

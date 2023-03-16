@@ -10,8 +10,11 @@ export class BusService {
 
   constructor(private http:HttpClient) { }
 
-  getAllBusStopLocations(pattern:any):Observable<any>
+  getAllBusStopLocations(pattern:string):Observable<any>
   {
+    if(pattern == ""){
+      return of([]);
+    }
     return this.http.get('https://localhost:7069/'+pattern);
   }
 

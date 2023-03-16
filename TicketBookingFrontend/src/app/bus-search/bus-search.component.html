@@ -4,19 +4,17 @@
     [formGroup]="myForm"
     (ngSubmit)="onSubmit(myForm)"
   >
-    <datalist id="sourceLocation">
-      <option *ngFor="let sourceLocation of sourceLocationList">{{ sourceLocation.name}}</option>
-    </datalist>
-    <datalist id="destinationLocation">
-      <option *ngFor="let destinationLocation of destinationLocationList">{{ destinationLocation.name }}</option>
-    </datalist>
-    <label class="font-weight-bold text-primary">Source:</label>
-    <input (input)="sourceValueChanged()" formControlName="source"  placeholder="source" list="sourceLocation" />
-    <label class="font-weight-bold text-primary">Destination:</label>
-    <input (input)="destinationValueChanged()" formControlName="destination" placeholder="destination" list="destinationLocation" />
+    <typeahead-dropdown
+      [labelText]="'Source'"
+      [inputFormControl]="source"
+    ></typeahead-dropdown>
+    <typeahead-dropdown
+      [labelText]="'Destination'"
+      [inputFormControl]="destination"
+    ></typeahead-dropdown>
     <label class="font-weight-bold text-primary">Date: </label>
     <input type="date" formControlName="travelDate" />
     <br />
     <input class="btn btn-primary" type="submit" value="Search" />
   </form>
-  </div>
+</div>
