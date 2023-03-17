@@ -1,20 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TicketBooking.Domain;
 
-namespace TicketBooking.Domain
+namespace TicketBookingAPI.Model
 {
-    public class Bus
+    public class BusModel
     {
-        public int Id { get; set; }
         public string BusName { get; set; }
         public string Type { get; set; }
-        public int SourceCityId { get; set; }
-        public int DestinationCityId { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
-
-        [ForeignKey(nameof(SourceCityId))]
         public City SourceCity { get; set; }
-        [ForeignKey(nameof(DestinationCityId))]
         public City DestinationCity { get; set; }
     }
 }

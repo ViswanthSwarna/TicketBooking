@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TicketBooking.Data;
 using TicketBookingAPI.Interface;
 using TicketBookingAPI.Model;
-using TicketBooking.Data;
 
 namespace TicketBookingAPI.Repository
 {
