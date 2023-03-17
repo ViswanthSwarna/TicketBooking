@@ -17,26 +17,12 @@ namespace TicketBookingAPI.Repository
             _mapper = mapper;
         }
 
-        public async Task<TicketModel> SaveTicket(TicketModel ticketModel)
+        public async Task<bool> SaveTicket(TicketModel ticketModel)
         {
             var ticketEntry = _mapper.Map<Ticket>(ticketModel);
             _context.Entry(ticketEntry).State = EntityState.Added;
             var res = _context.SaveChanges();
-            if(res > 0)
-            {
-                var ticketRes = await _context.Ticket
-                    .Include(ticket => ticket.Bus)
-                    .ThenInclude(city => city.SourceCity)
-                    .Include(ticket => ticket.Bus)
-                    .ThenInclude(city => city.DestinationCity)
-                    .Where(ticket => ticket.Id == ticketEntry.Id).FirstOrDefaultAsync();
-                ticketModel = _mapper.Map<TicketModel>(ticketRes);
-                return ticketModel;
-            }
-            else 
-            { 
-                return null; 
-            }
+            return res > 0 ? true : false;
         }
     }
 }

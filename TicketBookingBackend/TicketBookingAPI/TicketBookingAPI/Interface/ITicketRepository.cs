@@ -4,6 +4,6 @@ namespace TicketBookingAPI.Interface
 {
     public interface ITicketRepository
     {
-        Task<TicketModel> SaveTicket(TicketModel ticketModel);
+        Task<bool> SaveTicket(TicketModel ticketModel);
     }
 }

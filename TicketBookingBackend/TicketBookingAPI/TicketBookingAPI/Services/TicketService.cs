@@ -10,10 +10,10 @@ namespace TicketBookingAPI.Services
         {
             _repository = repository;
         }
-        public async Task<TicketModel> SaveTicket(TicketModel ticketmodel)
+        public async Task<bool> SaveTicket(TicketModel ticketmodel)
         {
-            var ticketModel = await _repository.SaveTicket(ticketmodel);
-            return ticketModel;
+            var result = await _repository.SaveTicket(ticketmodel);
+            return result;
         }
     }
 }

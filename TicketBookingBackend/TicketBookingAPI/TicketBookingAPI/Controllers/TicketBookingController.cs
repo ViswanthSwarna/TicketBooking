@@ -46,7 +46,7 @@ namespace TicketBookingAPI.Controllers
         }
 
         [HttpPost("SaveTicket")]
-        public async Task<ActionResult<TicketModel>> SaveTicket(TicketModel ticketModel) 
+        public async Task<ActionResult<bool>> SaveTicket(TicketModel ticketModel) 
         {
             var res = await _ticketService.SaveTicket(ticketModel);
             return Ok(res);

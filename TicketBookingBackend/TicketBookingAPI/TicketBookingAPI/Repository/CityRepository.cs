@@ -25,7 +25,10 @@ namespace TicketBookingAPI.Repository
 
         public async Task<IEnumerable<CityModel>> GetAllCitiesLike(string pattern)
         {
-            var cities = await _context.City.Where(city => EF.Functions.Like(city.Name, pattern + "%")).ToListAsync();
+            var cities = await _context.City
+                .Where(city => EF.Functions
+                    .Like(city.Name, pattern + "%"))
+                .ToListAsync();
             var result = _mapper.Map<IEnumerable<CityModel>>(cities);
             return result;
         }
