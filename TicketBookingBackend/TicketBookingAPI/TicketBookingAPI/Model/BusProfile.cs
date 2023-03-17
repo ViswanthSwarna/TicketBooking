@@ -8,6 +8,7 @@ namespace TicketBookingAPI.Model
         public BusProfile()
         {
             CreateMap<BusModel, Bus>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.BusName, opt => opt.MapFrom(src => src.BusName))
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.SourceCity, opt => opt.MapFrom(src => src.SourceCity))
@@ -15,6 +16,7 @@ namespace TicketBookingAPI.Model
                 .ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => src.StartDateTime))
                 .ForMember(dest => dest.EndDateTime, opt => opt.MapFrom(src => src.EndDateTime));
             CreateMap<Bus, BusModel>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.BusName, opt => opt.MapFrom(src => src.BusName))
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.SourceCity, opt => opt.MapFrom(src => src.SourceCity))

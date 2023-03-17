@@ -5,6 +5,7 @@ namespace TicketBookingAPI.Model
 {
     public class BusModel
     {
+        public int Id { get; set; } 
         public string BusName { get; set; }
         public string Type { get; set; }
         public DateTime StartDateTime { get; set; }

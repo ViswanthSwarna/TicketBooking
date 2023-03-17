@@ -10,10 +10,12 @@ namespace TicketBookingAPI.Controllers
     {
         private CityService _cityservice;
         private BusService _busService;
-        public TicketBookingController(CityService cityService,BusService busService)
+        private TicketService _ticketService;
+        public TicketBookingController(CityService cityService,BusService busService, TicketService ticketService)
         {
             _cityservice = cityService;
             _busService = busService;
+            _ticketService = ticketService;
         }
 
         [HttpGet("/{pattern}")]
@@ -35,6 +37,19 @@ namespace TicketBookingAPI.Controllers
         {
             var cities = await _busService.GetBuses();
             return Ok(cities);
+        }
+        [HttpGet("GetBus")]
+        public async Task<ActionResult<BusModel>> GetBus(int busId)
+        {
+            var bus = await _busService.GetBus(busId);
+            return Ok(bus);
+        }
+
+        [HttpPost("SaveTicket")]
+        public async Task<ActionResult<TicketModel>> SaveTicket(TicketModel ticketModel) 
+        {
+            var res = await _ticketService.SaveTicket(ticketModel);
+            return Ok(res);
         }
     }
 }

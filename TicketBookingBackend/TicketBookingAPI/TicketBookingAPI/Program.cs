@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using TicketBookingAPI.Middleware;
 using Microsoft.Extensions.Logging;
 using TicketBookingAPI.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,10 @@ builder.Services.AddDbContext<TicketManagemetContext>(
     opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("APIConnection"))
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 builder.AddDependencies();
 
 var app = builder.Build();

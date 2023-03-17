@@ -22,5 +22,11 @@ namespace TicketBookingAPI.Services
             var cities = await _repository.GetBuses();
             return cities;
         }
+
+        public async Task<BusModel> GetBus(int busId) 
+        { 
+            var bus = await _repository.GetBus(busId);
+            return bus;
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace TicketBookingAPI.Interface
     {
         Task<IEnumerable<BusModel>> GetBuses();
         Task<IEnumerable<BusModel>> GetBuses(BusSearchInputModel busSearchInput);
+        Task<BusModel> GetBus(int busId);
     }
 }
