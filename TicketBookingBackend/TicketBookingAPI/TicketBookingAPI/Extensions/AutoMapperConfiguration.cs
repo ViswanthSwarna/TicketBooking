@@ -1,0 +1,18 @@
+﻿using AutoMapper;
+using TicketBooking.Domain;
+using TicketBookingAPI.Model;
+
+namespace Assignment.Api.ServiceCollectionConfigurations
+{
+    public class AutoMapperConfiguration : Profile
+    {
+        public AutoMapperConfiguration()
+        {
+            CreateMap<TicketModel, Ticket>().ReverseMap();
+            CreateMap<UserModel, Users>().ReverseMap();
+            CreateMap<CityModel, City>().ReverseMap();
+            CreateMap<BusModel, Bus>().ReverseMap();
+            CreateMap<TicketModel, Ticket>().ReverseMap();
+        }
+    }
+}

@@ -1,6 +1,5 @@
-export interface SearchRequest
-{
-    source:string;
-    destination:string;
-    travelDate:string;
+export interface searchRequest {
+    sourceCity: string;
+    destinationCity: string;
+    startDate: string;
 }

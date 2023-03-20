@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
-import { item } from 'src/app/models/Item.model';
+import { item } from 'src/app/models/item.model';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({

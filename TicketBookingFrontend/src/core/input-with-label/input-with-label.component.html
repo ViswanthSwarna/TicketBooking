@@ -1,0 +1,7 @@
+<div scope = 'col' class="d-flex flex-column ">
+    <label>
+    {{labelText}}:
+      <input  class="form-control" [formControl]="inputFieldFormControl" [placeholder]="labelText" />
+    </label>
+    <span class ="error-message" *ngIf = "inputFieldFormControl && inputFieldFormControl.invalid && inputFieldFormControl.touched">{{"Valid "+labelText +" is required"}}</span>
+</div>
