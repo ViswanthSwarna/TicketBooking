@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BusSearchComponent } from './home/components/bus-search/bus-search.component';
-import { LoginSignUPComponent } from './login-sign-up/login-sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TypeaheadDropdownComponent } from '../core/typeahead-dropdown/typeahead-dropdown.component';
 import { DisplayAvailableBusComponent } from './home/components/display-available-bus/display-available-bus.component';
@@ -19,7 +18,6 @@ import { appRoutes } from './app.routes';
   declarations: [
     AppComponent,
     BusSearchComponent,
-    LoginSignUPComponent,
     TypeaheadDropdownComponent,
     DisplayAvailableBusComponent,
     HomeComponent,

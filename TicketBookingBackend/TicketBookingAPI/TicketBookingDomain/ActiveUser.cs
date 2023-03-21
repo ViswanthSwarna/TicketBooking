@@ -1,6 +1,6 @@
 ﻿namespace TicketBooking.Domain
 {
-    public class Users
+    public class ActiveUser
     {
         public int Id { get; set; }
         public string FullName { get; set; }

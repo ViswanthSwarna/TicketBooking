@@ -1,6 +1,6 @@
 import { user } from './user.model';
 
-export interface ticketRequestBody {
+export interface ticket{
     ticketId: number;
     busId: number;
     userId: number;

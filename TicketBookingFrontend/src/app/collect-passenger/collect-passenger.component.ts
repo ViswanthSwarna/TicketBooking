@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ticketRequestBody } from '../models/ticket.model';
+import { regex } from '../constants/regex';
+import { ticket } from '../models/ticket.model';
 import { BookingService } from '../services/booking.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { BookingService } from '../services/booking.service';
 export class CollectPassengerComponent {
     nameFormControl: any = this.fb.control('', [Validators.required]);
     emailFormControl: any = this.fb.control('', [Validators.required, Validators.email]);
-    phoneNumberFormControl: any = this.fb.control('', [Validators.required, Validators.pattern('^[0-9]{10}$')]);
+    phoneNumberFormControl: any = this.fb.control('', [Validators.required, Validators.pattern(regex.phoneNumberRegex)]);
     myForm: FormGroup = this.fb.group({
         name: this.nameFormControl,
         email: this.emailFormControl,
@@ -21,7 +22,7 @@ export class CollectPassengerComponent {
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private bookingService: BookingService, private router: Router) {}
 
     onSubmit(form: FormGroup) {
-        let ticketBody = <ticketRequestBody>{
+        let ticketBody = <ticket>{
             busId: this.route.snapshot.params['busId'],
             userId: 1,
             fare: 100,

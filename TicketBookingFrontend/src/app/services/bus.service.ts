@@ -12,7 +12,7 @@ export class BusService {
     searchBody$ = new BehaviorSubject<searchRequest>({ sourceCity: '', destinationCity: '', startDate: '' });
     busList$: Observable<any> = this.searchBody$.pipe(
         switchMap(searchBody => {
-            return this.http.post(environment.apiUrl2, searchBody);
+            return this.http.post(environment.apiUrl, searchBody);
         })
     );
 
@@ -22,7 +22,7 @@ export class BusService {
         if (pattern == '') {
             return of([]);
         }
-        return this.http.get(environment.apiUrl + pattern);
+        return this.http.get(environment.locationListApiUrl + pattern);
     }
 
     searchForAvailableVehicle(searchBody: any): Observable<any> {

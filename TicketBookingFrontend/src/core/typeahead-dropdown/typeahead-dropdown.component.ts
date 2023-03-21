@@ -6,8 +6,7 @@ import { BusService } from 'src/app/services/bus.service';
 
 @Component({
   selector: 'typeahead-dropdown',
-  templateUrl: './typeahead-dropdown.component.html',
-  styleUrls: ['./typeahead-dropdown.component.css'],
+  templateUrl: './typeahead-dropdown.component.html'
 })
 export class TypeaheadDropdownComponent {
   @Input() labelText = 'label';

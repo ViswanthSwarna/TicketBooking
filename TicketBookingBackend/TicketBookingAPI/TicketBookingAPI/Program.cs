@@ -18,14 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("CORS",
-        corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-        .SetIsOriginAllowed(origin => true));
-});
+builder.Services.AddCorsPolicy();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<TicketManagemetContext>(
@@ -37,7 +30,6 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     options.SuppressModelStateInvalidFilter = true;
 });
 builder.AddDependencies();
-
 
 builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
 
