@@ -1,13 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
-import { item } from 'src/app/models/Item.model';
+import { item } from 'src/app/models/item.model';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({
   selector: 'typeahead-dropdown',
-  templateUrl: './typeahead-dropdown.component.html',
-  styleUrls: ['./typeahead-dropdown.component.css'],
+  templateUrl: './typeahead-dropdown.component.html'
 })
 export class TypeaheadDropdownComponent {
   @Input() labelText = 'label';

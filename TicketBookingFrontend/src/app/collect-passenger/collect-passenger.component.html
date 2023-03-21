@@ -1,0 +1,6 @@
+<form class="d-flex flex-column align-items-center form-group" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <app-input-with-label labelText="Name" [inputFieldFormControl]="nameFormControl"></app-input-with-label>
+    <app-input-with-label labelText="Email" [inputFieldFormControl]="emailFormControl"></app-input-with-label>
+    <app-input-with-label labelText="Phone Number" [inputFieldFormControl]="phoneNumberFormControl"></app-input-with-label>
+    <input class="btn btn-primary" type="submit" value="Submit & Pay" />
+</form>

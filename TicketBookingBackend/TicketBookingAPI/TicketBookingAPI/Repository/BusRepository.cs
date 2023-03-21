@@ -31,9 +31,9 @@ namespace TicketBookingAPI.Repository
         {
             var buses = await _context.Bus
                 .Where(bus =>
-                bus.StartDateTime == busSearchInput.StartDate
-                && bus.SourceCity.Id == busSearchInput.SourceCityId
-                && bus.DestinationCity.Id == busSearchInput.DestinationCityId)
+                bus.StartDateTime.Date == busSearchInput.StartDate.Date
+                && bus.SourceCity.Name == busSearchInput.SourceCity
+                && bus.DestinationCity.Name == busSearchInput.DestinationCity)
                 .Select(bus => new BusModel
                 {
                     Id = bus.Id,
