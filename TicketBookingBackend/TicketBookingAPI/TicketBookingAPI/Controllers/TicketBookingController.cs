@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TicketBookingAPI.Interface;
 using TicketBookingAPI.Model;
-using TicketBookingAPI.Services;
 
 namespace TicketBookingAPI.Controllers
 {
@@ -8,10 +8,10 @@ namespace TicketBookingAPI.Controllers
     [ApiController]
     public class TicketBookingController : Controller
     {
-        private CityService _cityservice;
-        private BusService _busService;
-        private TicketService _ticketService;
-        public TicketBookingController(CityService cityService,BusService busService, TicketService ticketService)
+        private ICityService _cityservice;
+        private IBusService _busService;
+        private ITicketService _ticketService;
+        public TicketBookingController(ICityService cityService, IBusService busService, ITicketService ticketService)
         {
             _cityservice = cityService;
             _busService = busService;
@@ -46,10 +46,15 @@ namespace TicketBookingAPI.Controllers
         }
 
         [HttpPost("SaveTicket")]
-        public async Task<ActionResult<bool>> SaveTicket(TicketModel ticketModel) 
+        public async Task<ActionResult<bool>> SaveTicket(TicketModel ticketModel)
         {
             var res = await _ticketService.SaveTicket(ticketModel);
             return Ok(res);
         }
+
+        //public async Task<ActionResult<bool>> SaveTicketForGuest(TicketModel ticketModel) 
+        //{ 
+
+        //}
     }
 }

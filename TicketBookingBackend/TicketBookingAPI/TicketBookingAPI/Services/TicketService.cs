@@ -1,12 +1,12 @@
-﻿using TicketBookingAPI.Model;
-using TicketBookingAPI.Repository;
+﻿using TicketBookingAPI.Interface;
+using TicketBookingAPI.Model;
 
 namespace TicketBookingAPI.Services
 {
-    public class TicketService
+    public class TicketService : ITicketService
     {
-        private TicketRepository _repository;
-        public TicketService(TicketRepository repository)
+        private ITicketRepository _repository;
+        public TicketService(ITicketRepository repository)
         {
             _repository = repository;
         }
