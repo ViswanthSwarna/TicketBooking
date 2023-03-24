@@ -9,7 +9,7 @@ namespace TicketBookingAPI.Repository
 {
     public class BusRepository : IBusRepository
     {
-        TicketManagemetContext _context;
+        private TicketManagemetContext _context;
         private IMapper _mapper;
         public BusRepository(TicketManagemetContext context, IMapper mapper)
         {
