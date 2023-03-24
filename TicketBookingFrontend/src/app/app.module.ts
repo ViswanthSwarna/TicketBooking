@@ -12,6 +12,7 @@ import { CollectPassengerComponent } from './collect-passenger/collect-passenger
 import { InputWithLabelComponent } from '../core/input-with-label/input-with-label.component';
 import { TicketBookingSuccessfulComponent } from './ticket-booking-successful/ticket-booking-successful.component';
 import { appRoutes } from './app.routes';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { appRoutes } from './app.routes';
     HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

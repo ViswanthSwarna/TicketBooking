@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
-import { item } from 'src/app/models/item.model';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({
   selector: 'typeahead-dropdown',
-  templateUrl: './typeahead-dropdown.component.html'
+  templateUrl: './typeahead-dropdown.component.html',
+  providers: [BusService]
 })
 export class TypeaheadDropdownComponent {
   @Input() labelText = 'label';
@@ -17,12 +17,11 @@ export class TypeaheadDropdownComponent {
 
   constructor(private busService: BusService) {}
 
-  inputText$ = new BehaviorSubject<string>('');
-  itemList$: Observable<string[]> = this.inputText$.pipe(
+  inputText$ = new BehaviorSubject<string>("");
+  itemList$: Observable<any> = this.inputText$.pipe(
     switchMap((x) => {
-      return this.busService.getAllBusStopLocations(x); //see if u can generalize this also with delegate or something
-    }),
-    map((items: item[]) => items.map((x) => x.name))
+      return this.busService.getAllBusStopLocations(x);
+    })
   );
 
   valueChanged() {
