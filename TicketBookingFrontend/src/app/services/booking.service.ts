@@ -9,9 +9,15 @@ import { ticket } from '../models/ticket.model';
 })
 export class BookingService {
     ticketBody$ = new Subject<ticket>();
+    ticketBodyForGuest$ = new Subject<ticket>();
     isSaved$: Observable<any> = this.ticketBody$.pipe(
         switchMap(ticketBody => {
-            return this.http.post(environment.apiUrl + 'saveticket', ticketBody);
+            return this.http.post(environment.domainUrl + 'api/TicketBooking/saveticket', ticketBody);
+        })
+    );
+    isSavedForGuestUser$:Observable<any> = this.ticketBodyForGuest$.pipe(
+        switchMap(ticketBody => {
+            return this.http.post(environment.domainUrl + 'api/TicketBooking/saveticketforguest', ticketBody);
         })
     );
 
@@ -20,5 +26,10 @@ export class BookingService {
     SaveTicket(ticketBody: ticket): Observable<any> {
         this.ticketBody$.next(ticketBody);
         return this.isSaved$;
+    }
+
+    SaveTicketForGuestUser(ticketBodyForGuest: ticket): Observable<any> {
+        this.ticketBodyForGuest$.next(ticketBodyForGuest);
+        return this.isSavedForGuestUser$;
     }
 }

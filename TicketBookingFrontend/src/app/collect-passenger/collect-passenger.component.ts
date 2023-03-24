@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { regex } from '../constants/regex';
 import { ticket } from '../models/ticket.model';
 import { BookingService } from '../services/booking.service';
@@ -19,20 +20,37 @@ export class CollectPassengerComponent {
         phone: this.phoneNumberFormControl
     });
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute, private bookingService: BookingService, private router: Router) {}
+    constructor(
+        private fb: FormBuilder,
+        private route: ActivatedRoute,
+        private bookingService: BookingService,
+        private router: Router,
+        private toastService: ToastrService
+    ) {}
 
     onSubmit(form: FormGroup) {
-        let ticketBody = <ticket>{
-            busId: this.route.snapshot.params['busId'],
-            userId: 1,
-            fare: 100,
-            isPaymentDone: false,
-            user: { fullName: form.value.name, email: form.value.email, phoneNumber: form.value.phone, isLoggedIn: false, isAdmin: false, password: '' }
-        };
-        this.bookingService.SaveTicket(ticketBody).subscribe({ next: response => this.onTicketSaved(response) });
+        let isGuestUser = true;
+        if (isGuestUser) {
+            let ticketBody = <ticket>{
+                busId: this.route.snapshot.params['busId'],
+                fare: 100,
+                isPaymentDone: false,
+                user: { fullName: form.value.name, email: form.value.email, phoneNumber: form.value.phone, isLoggedIn: false, isAdmin: false, password: '' }
+            };
+            this.bookingService.SaveTicketForGuestUser(ticketBody).subscribe({ next: response => this.onTicketSaved(response) });
+        } else {
+            let ticketBody = <ticket>{
+                busId: this.route.snapshot.params['busId'],
+                userId: 1,
+                fare: 100,
+                isPaymentDone: false
+            };
+            this.bookingService.SaveTicket(ticketBody).subscribe({ next: response => this.onTicketSaved(response) });
+        }
     }
 
     onTicketSaved(response: any) {
+        this.toastService.info('Ticket Booked Successfully');
         this.router.navigate(['/bookingsuccessful']);
     }
 }
