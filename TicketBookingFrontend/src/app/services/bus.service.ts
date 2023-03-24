@@ -28,7 +28,7 @@ export class BusService {
 
     getAllBusStopLocations(pattern: string): Observable<any> {
         this.pattern$.next(pattern);
-        return this.http.get(environment.domainUrl + pattern);//this.locations$;
+        return this.locations$;
     }
 
     searchForAvailableVehicle(searchBody: any): Observable<any> {
