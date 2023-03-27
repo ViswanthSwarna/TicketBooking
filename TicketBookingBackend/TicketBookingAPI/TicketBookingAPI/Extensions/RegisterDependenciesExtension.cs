@@ -1,4 +1,4 @@
-﻿using TicketBookingAPI.Middleware;
+﻿using TicketBookingAPI.Interface;
 using TicketBookingAPI.Repository;
 using TicketBookingAPI.Services;
 
@@ -8,12 +8,14 @@ namespace TicketBookingAPI.Extensions
     {
         public static void AddDependencies(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<CityRepository>();
-            builder.Services.AddScoped<CityService>();
-            builder.Services.AddScoped<BusRepository>();
-            builder.Services.AddScoped<BusService>();
-            builder.Services.AddScoped<TicketService>();
-            builder.Services.AddScoped<TicketRepository>();
+            builder.Services.AddScoped<ICityRepository, CityRepository>();
+            builder.Services.AddScoped<ICityService, CityService>();
+            builder.Services.AddScoped<IBusRepository, BusRepository>();
+            builder.Services.AddScoped<IBusService, BusService>();
+            builder.Services.AddScoped<ITicketService, TicketService>();
+            builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

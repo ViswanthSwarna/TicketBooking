@@ -8,7 +8,7 @@ namespace TicketBookingAPI.Repository
 {
     public class CityRepository : ICityRepository
     {
-        TicketManagemetContext _context;
+        private TicketManagemetContext _context;
         private IMapper _mapper;
         public CityRepository(TicketManagemetContext context, IMapper mapper)
         {

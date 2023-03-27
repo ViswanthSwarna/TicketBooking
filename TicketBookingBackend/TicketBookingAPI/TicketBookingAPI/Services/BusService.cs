@@ -1,13 +1,12 @@
-﻿using NuGet.Protocol.Core.Types;
+﻿using TicketBookingAPI.Interface;
 using TicketBookingAPI.Model;
-using TicketBookingAPI.Repository;
 
 namespace TicketBookingAPI.Services
 {
-    public class BusService
+    public class BusService : IBusService
     {
-        private BusRepository _repository;
-        public BusService(BusRepository repository)
+        private IBusRepository _repository;
+        public BusService(IBusRepository repository)
         {
             _repository = repository;
         }
