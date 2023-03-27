@@ -20,11 +20,19 @@ namespace TicketBookingAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet("/{pattern}")]
+        [HttpGet("/{pattern?}")]
         public async Task<ActionResult<IEnumerable<CityModel>>> GetAllCities(string pattern)
         {
-            var cities = await _cityservice.GetAllCitiesLike(pattern);
-            return Ok(cities);
+            if (string.IsNullOrWhiteSpace(pattern))
+            {
+                var cities = await _cityservice.GetAllCities();
+                return Ok(cities);
+            }
+            else 
+            {
+                var cities = await _cityservice.GetAllCitiesLike(pattern);
+                return Ok(cities);
+            }
         }
 
         [HttpPost]
