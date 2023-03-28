@@ -12,7 +12,7 @@ namespace TicketBookingData.Migrations
         {
             migrationBuilder.AddColumn<bool>(
                 name: "IsGuest",
-                table: "User",
+                table: "Users",
                 type: "bit",
                 nullable: false,
                 defaultValue: false);
@@ -23,7 +23,7 @@ namespace TicketBookingData.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "IsGuest",
-                table: "User");
+                table: "Users");
         }
     }
 }

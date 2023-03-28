@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using TicketBooking.Domain;
+﻿using TicketBooking.Models;
 
-namespace TicketBookingAPI.Model
+namespace TicketBooking.Models
 {
     public class BusModel
     {
@@ -10,7 +9,7 @@ namespace TicketBookingAPI.Model
         public string Type { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
-        public City SourceCity { get; set; }
-        public City DestinationCity { get; set; }
+        public CityModel SourceCity { get; set; }
+        public CityModel DestinationCity { get; set; }
     }
 }

@@ -1,9 +1,10 @@
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column">
   <datalist [id]="dynamicId">
     <option *ngFor="let item of itemList$| async" [attr.data-index]="item.id">{{ item.name }}</option>
   </datalist>
-  <label class="font-weight-bold text-primary">{{ labelText }}:</label>
+  <label class="fw-bold text-primary text-left">{{ labelText }}:</label>
   <input
+    class ="form-control"
     (input)="valueChanged()"
     [placeholder]="labelText"
     [attr.list]="dynamicId"

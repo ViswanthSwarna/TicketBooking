@@ -1,0 +1,31 @@
+<div class="d-flex flex-column align-items-center form-group">
+    <br />
+    <table  class="align-items-center table table-striped">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Bus</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>StartDateTime</th>
+                <th>EndDateTime</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bus of busList; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ bus.busName }}</td>
+                <td>{{ bus.sourceCity.name }}</td>
+                <td>{{ bus.destinationCity.name }}</td>
+                <td>{{ bus.startDateTime }}</td>
+                <td>{{ bus.endDateTime }}</td>
+                <td>{{ bus.type }}</td>
+                <td><button class = "btn btn-primary btn-sm m-1" (click)="editItem(bus.id)">Edit</button>
+                    <button class = "btn btn-primary btn-sm m-1" (click)="deleteItem(bus.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

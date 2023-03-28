@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TicketBooking.Models;
 using TicketBookingAPI.Interface;
-using TicketBookingAPI.Model;
 
 namespace TicketBookingAPI.Controllers
 {

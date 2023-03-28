@@ -1,0 +1,36 @@
+<div class = "container">
+    <admin-grid (delete)="delete($event)" (edit)="edit($event)" [busList]="busList"></admin-grid>
+    <button class = "btn btn-primary float-right" (click)="add()">Add</button>
+</div>
+
+<div class="modal fade" id="modal-my-id" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold text-primary text-center">{{isAdd?"Add Bus":"Edit Bus"}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="busFormGroup">
+            <div class="form-group">
+              <label class="col-form-label fw-bold text-primary">Bus Name:</label>
+              <input type="text" formControlName="busName" placeholder="Bus Name" class="form-control" id="recipient-name">
+            <typeahead-dropdown labelText="Source City"  [inputFormControl]="sourceCity" ></typeahead-dropdown>
+            <typeahead-dropdown labelText="Destination City" [inputFormControl]="destinationCity" ></typeahead-dropdown>
+            <label class="col-form-label fw-bold text-primary">Start Date Time:</label>
+            <input type="datetime-local" class="form-control"  formControlName="startDateTime" />
+            <label class="col-form-label fw-bold text-primary">End Date Time:</label>
+            <input type="datetime-local" class="form-control" formControlName="endDateTime" />
+            <label class="col-form-label fw-bold text-primary">Type:</label>
+            <input type="text"class="form-control" placeholder="Type" formControlName="type" />
+        </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

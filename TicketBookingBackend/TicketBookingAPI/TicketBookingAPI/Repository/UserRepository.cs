@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TicketBooking.Data;
 using TicketBooking.Domain;
 using TicketBookingAPI.Interface;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace TicketBookingAPI.Repository
 {
@@ -19,7 +19,7 @@ namespace TicketBookingAPI.Repository
 
         public async Task<int> SaveUser(UserModel userModel) 
         {
-            var user = _mapper.Map<ActiveUser>(userModel);
+            var user = _mapper.Map<User>(userModel);
             _context.Entry(user).State = EntityState.Added;
             var res = await _context.SaveChangesAsync();
             var userId = user.Id;

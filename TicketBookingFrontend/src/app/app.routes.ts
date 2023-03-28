@@ -5,6 +5,7 @@ import { TicketBookingSuccessfulComponent } from './ticket-booking-successful/ti
 
 export const appRoutes = [
     { path: 'loginsignup/:isLogin', loadChildren: () => import('./login-sign-up/login-sign-up.module').then(m => m.LoginSignUpModule) },
+    { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
     { path: 'collectdetails/:busId', component: CollectPassengerComponent },

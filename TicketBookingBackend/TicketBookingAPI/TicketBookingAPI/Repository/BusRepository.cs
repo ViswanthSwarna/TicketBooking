@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TicketBooking.Data;
 using TicketBooking.Domain;
 using TicketBookingAPI.Interface;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace TicketBookingAPI.Repository
 {
@@ -37,8 +37,8 @@ namespace TicketBookingAPI.Repository
                 .Select(bus => new BusModel
                 {
                     Id = bus.Id,
-                    SourceCity = bus.SourceCity,
-                    DestinationCity = bus.DestinationCity,
+                    SourceCity = _mapper.Map<CityModel>(bus.SourceCity),
+                    DestinationCity = _mapper.Map<CityModel>(bus.DestinationCity),
                     BusName = bus.BusName,
                     StartDateTime = bus.StartDateTime,
                     EndDateTime = bus.EndDateTime,
@@ -58,8 +58,8 @@ namespace TicketBookingAPI.Repository
                 .Select(bus => new BusModel
                 {
                     Id = bus.Id,
-                    SourceCity = bus.SourceCity,
-                    DestinationCity = bus.DestinationCity,
+                    SourceCity = _mapper.Map<CityModel>(bus.SourceCity),
+                    DestinationCity = _mapper.Map<CityModel>(bus.DestinationCity),
                     BusName = bus.BusName,
                     StartDateTime = bus.StartDateTime,
                     EndDateTime = bus.EndDateTime,

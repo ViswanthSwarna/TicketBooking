@@ -1,6 +1,6 @@
-﻿using Microsoft.Build.Framework;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace TicketBookingAPI.Model
+namespace TicketBooking.Models
 {
     public class BusSearchInputModel
     {

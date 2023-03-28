@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace TicketBookingAPI.Middleware
 {

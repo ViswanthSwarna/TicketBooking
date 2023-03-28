@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using TicketBooking.Domain;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace Assignment.Api.ServiceCollectionConfigurations
 {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TicketBooking.Data;
 using TicketBooking.Domain;
 using TicketBookingAPI.Interface;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace TicketBookingAPI.Repository
 {

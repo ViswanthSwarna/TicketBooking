@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TicketBooking.Models\TicketBooking.Models.csproj" />
+    <ProjectReference Include="..\TicketBooking.Services\TicketBooking.Services.csproj" />
     <ProjectReference Include="..\TicketBookingData\TicketBookingData.csproj" />
     <ProjectReference Include="..\TicketBookingDomain\TicketBookingDomain.csproj" />
   </ItemGroup>

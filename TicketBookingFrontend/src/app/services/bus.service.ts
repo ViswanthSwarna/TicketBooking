@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, debounce, interval, map, Observable, of, Subject, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environment/environment';
-import { bus } from '../models/bus.model';
 import { searchRequest } from '../models/search-request.model';
+import { bus } from '../models/bus.model';
 
 @Injectable({
     providedIn: 'root'
@@ -34,5 +34,30 @@ export class BusService {
     searchForAvailableVehicle(searchBody: any): Observable<any> {
         this.searchBody$.next(searchBody);
         return this.busList$;
+
+    }
+
+    getBusList():Observable<any>{
+        return this.http.get(environment.domainUrl +'api/TicketBooking/');
+    }
+
+    getAllBuses():Observable<any>{
+        return this.http.get(environment.domainUrl +'api/Bus');
+    }
+
+    addBus(requestBody:bus):Observable<any>{
+        return this.http.post(environment.domainUrl +'api/Bus',requestBody);
+    }
+
+    updateBus(requestBody:bus):Observable<any>{
+        return this.http.put(environment.domainUrl +'api/Bus',requestBody);
+    }
+
+    getBus(id:any):Observable<any>{
+        return this.http.get(environment.domainUrl +'api/Bus/'+id);
+    }
+
+    deleteBus(id:any):Observable<any>{
+        return this.http.delete(environment.domainUrl +'api/Bus/'+id);
     }
 }
