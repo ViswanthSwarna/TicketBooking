@@ -12,8 +12,8 @@ using TicketBooking.Data;
 namespace TicketBookingData.Migrations
 {
     [DbContext(typeof(TicketManagemetContext))]
-    [Migration("20230324034340_addedIsGuestToUserTable")]
-    partial class addedIsGuestToUserTable
+    [Migration("20230329110059_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,44 +24,6 @@ namespace TicketBookingData.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("TicketBooking.Domain.ActiveUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsGuest")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsLoggedIn")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User");
-                });
 
             modelBuilder.Entity("TicketBooking.Domain.Bus", b =>
                 {
@@ -115,6 +77,63 @@ namespace TicketBookingData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("City");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Dhule"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Bangalore"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Mumbai"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Nashik"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pune"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Delhi"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Nagpur"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Kanpur"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Satara"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Kolhapur"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Vijaywada"
+                        });
                 });
 
             modelBuilder.Entity("TicketBooking.Domain.Ticket", b =>
@@ -146,6 +165,79 @@ namespace TicketBookingData.Migrations
                     b.ToTable("Ticket");
                 });
 
+            modelBuilder.Entity("TicketBooking.Domain.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsGuestUser")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLoggedIn")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "R.Salunkhe@devon.nl",
+                            FullName = "Rakesh Salunkhe",
+                            IsAdmin = true,
+                            IsGuestUser = false,
+                            IsLoggedIn = false,
+                            Password = "123123",
+                            PhoneNumber = "860019111"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "M.Mummmm@devon.nl",
+                            FullName = "M M M",
+                            IsAdmin = false,
+                            IsGuestUser = false,
+                            IsLoggedIn = false,
+                            Password = "123123",
+                            PhoneNumber = "860019111"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "C.cccccc@devon.nl",
+                            FullName = "C C C",
+                            IsAdmin = true,
+                            IsGuestUser = false,
+                            IsLoggedIn = false,
+                            Password = "123123",
+                            PhoneNumber = "860019111"
+                        });
+                });
+
             modelBuilder.Entity("TicketBooking.Domain.Bus", b =>
                 {
                     b.HasOne("TicketBooking.Domain.City", "DestinationCity")
@@ -173,7 +265,7 @@ namespace TicketBookingData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TicketBooking.Domain.ActiveUser", "User")
+                    b.HasOne("TicketBooking.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

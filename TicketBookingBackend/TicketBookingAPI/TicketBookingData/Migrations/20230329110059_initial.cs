@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TicketBookingData.Migrations
 {
     /// <inheritdoc />
@@ -12,7 +14,7 @@ namespace TicketBookingData.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CityDetails",
+                name: "City",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -21,11 +23,11 @@ namespace TicketBookingData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CityDetails", x => x.Id);
+                    table.PrimaryKey("PK_City", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserDetails",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -35,22 +37,22 @@ namespace TicketBookingData.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false),
-                    IsLoggedIn = table.Column<bool>(type: "bit", nullable: false)
+                    IsLoggedIn = table.Column<bool>(type: "bit", nullable: false),
+                    IsGuestUser = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserDetails", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BusDetails",
+                name: "Bus",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityDetailsId = table.Column<int>(type: "int", nullable: false),
                     SourceCityId = table.Column<int>(type: "int", nullable: false),
                     DestinationCityId = table.Column<int>(type: "int", nullable: false),
                     StartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -58,75 +60,112 @@ namespace TicketBookingData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BusDetails", x => x.Id);
+                    table.PrimaryKey("PK_Bus", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BusDetails_CityDetails_CityDetailsId",
-                        column: x => x.CityDetailsId,
-                        principalTable: "CityDetails",
+                        name: "FK_Bus_City_DestinationCityId",
+                        column: x => x.DestinationCityId,
+                        principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Bus_City_SourceCityId",
+                        column: x => x.SourceCityId,
+                        principalTable: "City",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TicketDetails",
+                name: "Ticket",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BusDetailsId = table.Column<int>(type: "int", nullable: false),
                     BusId = table.Column<int>(type: "int", nullable: false),
-                    UserDetailsId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Fare = table.Column<double>(type: "float", nullable: false),
                     IsPaymentDone = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TicketDetails", x => x.Id);
+                    table.PrimaryKey("PK_Ticket", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TicketDetails_BusDetails_BusDetailsId",
-                        column: x => x.BusDetailsId,
-                        principalTable: "BusDetails",
+                        name: "FK_Ticket_Bus_BusId",
+                        column: x => x.BusId,
+                        principalTable: "Bus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TicketDetails_UserDetails_UserDetailsId",
-                        column: x => x.UserDetailsId,
-                        principalTable: "UserDetails",
+                        name: "FK_Ticket_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_BusDetails_CityDetailsId",
-                table: "BusDetails",
-                column: "CityDetailsId");
+            migrationBuilder.InsertData(
+                table: "City",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Dhule" },
+                    { 2, "Bangalore" },
+                    { 3, "Mumbai" },
+                    { 4, "Nashik" },
+                    { 5, "Pune" },
+                    { 6, "Delhi" },
+                    { 7, "Nagpur" },
+                    { 8, "Kanpur" },
+                    { 9, "Satara" },
+                    { 10, "Kolhapur" },
+                    { 11, "Vijaywada" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "FullName", "IsAdmin", "IsGuestUser", "IsLoggedIn", "Password", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, "R.Salunkhe@devon.nl", "Rakesh Salunkhe", true, false, false, "123123", "860019111" },
+                    { 2, "M.Mummmm@devon.nl", "M M M", false, false, false, "123123", "860019111" },
+                    { 3, "C.cccccc@devon.nl", "C C C", true, false, false, "123123", "860019111" }
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketDetails_BusDetailsId",
-                table: "TicketDetails",
-                column: "BusDetailsId");
+                name: "IX_Bus_DestinationCityId",
+                table: "Bus",
+                column: "DestinationCityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TicketDetails_UserDetailsId",
-                table: "TicketDetails",
-                column: "UserDetailsId");
+                name: "IX_Bus_SourceCityId",
+                table: "Bus",
+                column: "SourceCityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ticket_BusId",
+                table: "Ticket",
+                column: "BusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ticket_UserId",
+                table: "Ticket",
+                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TicketDetails");
+                name: "Ticket");
 
             migrationBuilder.DropTable(
-                name: "BusDetails");
+                name: "Bus");
 
             migrationBuilder.DropTable(
-                name: "UserDetails");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "CityDetails");
+                name: "City");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Assignment.Api.ServiceCollectionConfigurations
         public AutoMapperConfiguration()
         {
             CreateMap<TicketModel, Ticket>().ReverseMap();
-            CreateMap<UserModel, ActiveUser>().ReverseMap();
+            CreateMap<UserModel, User>().ReverseMap();
             CreateMap<CityModel, City>().ReverseMap();
             CreateMap<BusModel, Bus>().ReverseMap();
             CreateMap<TicketModel, Ticket>().ReverseMap();
