@@ -1,5 +1,5 @@
 ﻿using TicketBookingAPI.Interface;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace TicketBookingAPI.Services
 {

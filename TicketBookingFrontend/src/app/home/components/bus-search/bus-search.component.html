@@ -3,7 +3,7 @@
         <typeahead-dropdown labelText="Source" [inputFormControl]="source"></typeahead-dropdown>
         <typeahead-dropdown labelText="Destination" [inputFormControl]="destination"></typeahead-dropdown>
         <label class="font-weight-bold text-primary">Date: </label>
-        <input type="date" formControlName="startDate" />
+        <input type="datetime-local" formControlName="startDate" />
         <br />
         <input class="btn btn-primary" type="submit" value="Search" />
     </form>

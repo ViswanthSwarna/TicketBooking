@@ -1,5 +1,5 @@
 ﻿using NuGet.Protocol.Core.Types;
-using TicketBookingAPI.Model;
+using TicketBooking.Models;
 
 namespace TicketBookingAPI.Interface
 {

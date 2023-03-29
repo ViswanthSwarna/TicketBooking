@@ -1,4 +1,4 @@
-﻿using TicketBookingAPI.Model;
+﻿using TicketBooking.Models;
 
 namespace TicketBookingAPI.Interface
 {

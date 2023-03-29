@@ -1,4 +1,4 @@
-import { city } from './city.model';
+import { city } from "./city.model";
 
 export interface bus {
     id: number;

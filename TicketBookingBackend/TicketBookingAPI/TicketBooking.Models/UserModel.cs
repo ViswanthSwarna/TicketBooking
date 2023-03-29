@@ -1,4 +1,4 @@
-﻿namespace TicketBookingAPI.Model
+﻿namespace TicketBooking.Models
 {
     public class UserModel
     {

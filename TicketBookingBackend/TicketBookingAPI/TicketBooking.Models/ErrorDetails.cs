@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace TicketBookingAPI.Model
+namespace TicketBooking.Models
 {
     public class ErrorDetails
     {
