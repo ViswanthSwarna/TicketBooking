@@ -18,45 +18,52 @@ namespace TicketBooking.Services.Classes
             _cityRepository = cityRepository;
         }
 
-        public int AddBus(BusModel busModel)
+        public async Task<int> AddBus(BusModel busModel)
         {
             Bus bus = _mapper.Map<Bus>(busModel);
-            bus.SourceCity = _cityRepository.FindIdByName(bus.SourceCity.Name);
-            bus.DestinationCity = _cityRepository.FindIdByName(bus.DestinationCity.Name);
+            bus.SourceCity = await _cityRepository.FindIdByName(bus.SourceCity.Name);
+            bus.DestinationCity = await _cityRepository.FindIdByName(bus.DestinationCity.Name);
             _busRepository.Insert(bus);
-            var inserted = _busRepository.Save();
+            var inserted = await _busRepository.Save();
             return inserted;
         }
 
-        public int DeleteBus(int id)
+        public async Task<int> DeleteBus(int id)
         {
-            _busRepository.Delete(id);
-            var deleted = _busRepository.Save();
+            await _busRepository.Delete(id);
+            var deleted = await _busRepository.Save();
             return deleted;
         }
 
-        public BusModel GetBus(int id)
+        public async Task<BusModel> GetBus(int id)
         {
-            var bus = _busRepository.Find(id);
+            var bus = await _busRepository.Find(id);
             var busModel = _mapper.Map<BusModel>(bus);
             return busModel;
         }
 
-        public IEnumerable<BusModel> GetBuses()
+        public async Task<IEnumerable<BusModel>> GetBuses()
         {
-            var buses = _busRepository.GetAll();
+            var buses = await _busRepository.GetAll();
             var busModels = _mapper.Map<IEnumerable<BusModel>>(buses);
             return busModels;
         }
 
-        public int UpdateBus(BusModel busModel)
+        public async Task<int> UpdateBus(BusModel busModel)
         {
             var bus = _mapper.Map<Bus>(busModel);
-            bus.SourceCity = _cityRepository.FindIdByName(bus.SourceCity.Name);
-            bus.DestinationCity = _cityRepository.FindIdByName(bus.DestinationCity.Name);
+            bus.SourceCity = await _cityRepository.FindIdByName(bus.SourceCity.Name);
+            bus.DestinationCity = await _cityRepository.FindIdByName(bus.DestinationCity.Name);
             _busRepository.Update(bus);
-            var updated = _busRepository.Save();
+            var updated = await _busRepository.Save();
             return updated;
+        }
+
+
+        public async Task<IEnumerable<BusModel>> GetBuses(BusSearchInputModel busSearchInput)
+        {
+            var cities = await _busRepository.GetBuses(busSearchInput);
+            return cities;
         }
     }
 }

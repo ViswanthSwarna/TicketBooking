@@ -15,37 +15,37 @@ namespace TicketBookingAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBuses()
+        public async Task<IActionResult> GetBuses()
         {
-            var buses = _busService.GetBuses();
+            var buses = await _busService.GetBuses();
             return Ok(buses);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBus(int id)
+        public async Task<IActionResult> GetBus(int id)
         {
-            var bus = _busService.GetBus(id);
+            var bus = await _busService.GetBus(id);
             return Ok(bus);
         }
 
         [HttpPost()]
-        public IActionResult AddBus(BusModel busModel)
+        public async Task<IActionResult> AddBus(BusModel busModel)
         {
-            var added = _busService.AddBus(busModel);
+            var added = await _busService.AddBus(busModel);
             return Ok(added);
         }
 
         [HttpPut()]
-        public IActionResult UpdateBus(BusModel busModel)
+        public async Task<IActionResult> UpdateBus(BusModel busModel)
         {
-            var updated = _busService.UpdateBus(busModel);
+            var updated = await _busService.UpdateBus(busModel);
             return Ok(updated);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBus(int id)
+        public async Task<IActionResult> DeleteBus(int id)
         {
-            var deleted = _busService.DeleteBus(id);
+            var deleted = await _busService.DeleteBus(id);
             return Ok(deleted);
         }
 

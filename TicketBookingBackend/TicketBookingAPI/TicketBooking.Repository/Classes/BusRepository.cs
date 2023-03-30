@@ -1,10 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketBooking.Data;
 using TicketBooking.Domain;
 using TicketBooking.Models;
@@ -15,23 +10,25 @@ namespace TicketBooking.Repository.Classes
     public class BusRepository : GenericTicketBookingRepository<Bus>, IBusRepository
     {
         private TicketManagemetContext _context;
-        public BusRepository(TicketManagemetContext context) : base(context)
+        private IMapper _mapper;
+        public BusRepository(TicketManagemetContext context, IMapper mapper) : base(context)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public override IEnumerable<Bus> GetAll()
+        public async override Task<IEnumerable<Bus>> GetAll()
         {
-            var buses = _context.Bus
+            var buses = await _context.Bus
                 .Include(bus => bus.DestinationCity)
                 .Include(bus => bus.SourceCity)
-                .ToList();
+                .ToListAsync();
             return buses;
         }
 
-        public override Bus? Find(object busId)
+        public async override Task<Bus?> Find(object busId)
         {
-            var bus = _context.Bus
+            var bus = await _context.Bus
                 .Where(bus => bus.Id == (int)busId)
                 .Select(bus => new Bus
                 {
@@ -43,8 +40,66 @@ namespace TicketBooking.Repository.Classes
                     EndDateTime = bus.EndDateTime,
                     Type = bus.Type
                 })
-                .First();
+                .FirstAsync();
             return bus;
         }
+
+        public async Task<IEnumerable<BusModel>> GetBuses(BusSearchInputModel busSearchInput)
+        {
+            var buses = await _context.Bus
+                .Where(bus =>
+                bus.StartDateTime.Date == busSearchInput.StartDate.Date
+                && bus.SourceCity.Name == busSearchInput.SourceCity
+                && bus.DestinationCity.Name == busSearchInput.DestinationCity)
+                .Select(bus => new BusModel
+                {
+                    Id = bus.Id,
+                    SourceCity = _mapper.Map<CityModel>(bus.SourceCity),
+                    DestinationCity = _mapper.Map<CityModel>(bus.DestinationCity),
+                    BusName = bus.BusName,
+                    StartDateTime = bus.StartDateTime,
+                    EndDateTime = bus.EndDateTime,
+                    Type = bus.Type
+                })
+                .ToListAsync();
+
+            var result = _mapper.Map<IEnumerable<BusModel>>(buses);
+            return result;
+        }
+
+        public async Task<IEnumerable<BusModel>> GetBuses()
+        {
+
+            var buses = await _context.Bus
+                .Include(bus => bus.DestinationCity)
+                .Include(bus => bus.SourceCity)
+                .ToListAsync();
+            var result = _mapper.Map<IEnumerable<BusModel>>(buses);
+            return result;
+        }
+
+        public async Task<BusModel> GetBus(int busId)
+        {
+            //var bus = await _context.Bus.Where(bus => bus.Id == busId).FirstOrDefaultAsync();
+            var bus = await _context.Bus
+                .Where(bus => bus.Id == busId)
+                .Select(bus => new BusModel
+                {
+                    Id = bus.Id,
+                    SourceCity = _mapper.Map<CityModel>(bus.SourceCity),
+                    DestinationCity = _mapper.Map<CityModel>(bus.DestinationCity),
+                    BusName = bus.BusName,
+                    StartDateTime = bus.StartDateTime,
+                    EndDateTime = bus.EndDateTime,
+                    Type = bus.Type
+                })
+                .FirstAsync();
+
+            var result = _mapper.Map<BusModel>(bus);
+
+            return result;
+        }
+
+
     }
 }

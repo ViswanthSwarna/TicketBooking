@@ -97,6 +97,6 @@ export class AdminComponent implements OnInit {
         }) 
     }
     delete(id: number) {
-        this.busService.deleteBus(id).subscribe({next:response => this.setValue(response)}); 
+        this.busService.deleteBus(id).subscribe({next:response => this.getAllBusList()}); 
     }
 }

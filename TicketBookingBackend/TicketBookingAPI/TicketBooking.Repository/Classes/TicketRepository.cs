@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using TicketBooking.Data;
 using TicketBooking.Domain;
-using TicketBookingAPI.Interface;
 using TicketBooking.Models;
+using TicketBooking.Repository.Interfaces;
 
-namespace TicketBookingAPI.Repository
+namespace TicketBooking.Repository.Classes
 {
     public class TicketRepository : ITicketRepository
     {
