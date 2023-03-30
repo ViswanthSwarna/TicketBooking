@@ -10,14 +10,12 @@ namespace TicketBooking.Services.Interfaces
 {
     public interface IBusService
     {
-        int AddBus(BusModel busModel);
+        Task<int> AddBus(BusModel busModel);
+        Task<int> DeleteBus(int id);
+        Task<BusModel> GetBus(int id);
+        Task<IEnumerable<BusModel>> GetBuses();
+        Task<int> UpdateBus(BusModel busModel);
 
-        int DeleteBus(int id);
-
-        BusModel GetBus(int id);
-
-        IEnumerable<BusModel> GetBuses();
-
-        int UpdateBus(BusModel busModel);
+        Task<IEnumerable<BusModel>> GetBuses(BusSearchInputModel busSearchInput);
     }
 }

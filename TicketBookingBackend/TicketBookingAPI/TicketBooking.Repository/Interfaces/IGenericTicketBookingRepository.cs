@@ -8,12 +8,11 @@ namespace TicketBooking.Repository.Interfaces
 {
     public interface IGenericTicketBookingRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity? Find(object id);
+        Task<IEnumerable<TEntity>> GetAll();
+        Task<TEntity?> Find(object id);
         void Insert(TEntity entity);
         void Update(TEntity entity);
-        void Delete(object id);
-
-        int Save();
+        Task<int> Delete(object id);
+        Task<int> Save();
     }
 }

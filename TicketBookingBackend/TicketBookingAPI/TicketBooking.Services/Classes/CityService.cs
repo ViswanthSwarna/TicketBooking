@@ -1,7 +1,8 @@
-﻿using TicketBookingAPI.Interface;
-using TicketBooking.Models;
+﻿using TicketBooking.Models;
+using TicketBooking.Repository.Interfaces;
+using TicketBooking.Services.Interfaces;
 
-namespace TicketBookingAPI.Services
+namespace TicketBooking.Services.Classes
 {
     public class CityService : ICityService
     {

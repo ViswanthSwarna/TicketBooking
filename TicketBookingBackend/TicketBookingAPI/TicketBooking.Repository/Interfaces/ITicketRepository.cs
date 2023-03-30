@@ -1,6 +1,6 @@
 ﻿using TicketBooking.Models;
 
-namespace TicketBookingAPI.Interface
+namespace TicketBooking.Repository.Interfaces
 {
     public interface ITicketRepository
     {

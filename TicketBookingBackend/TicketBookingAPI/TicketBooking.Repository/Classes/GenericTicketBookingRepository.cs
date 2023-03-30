@@ -17,36 +17,38 @@ namespace TicketBooking.Repository.Classes
             _context = context;
             _dbSet = context.Set<TEntity>();
         }
-        public virtual void Delete(object id)
+        public async virtual Task<int> Delete(object id)
         {
-            TEntity? entity = _dbSet.Find(id);
+            TEntity? entity = await _dbSet.FindAsync(id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
+                return 1;
             }
+            return 0;
         }
 
-        public virtual TEntity? Find(object id)
+        public async virtual Task<TEntity?> Find(object id)
         {
-            return _dbSet.Find(id);
+            return await _dbSet.FindAsync(id);
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public async virtual Task<IEnumerable<TEntity>> GetAll()
         {
-            return _dbSet.ToList();
+            return await _dbSet.ToListAsync();
         }
 
-        public virtual void Insert(TEntity entity)
+        public async virtual void Insert(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Added;
         }
 
-        public virtual void Update(TEntity entity)
+        public async virtual void Update(TEntity entity)
         {
             _dbSet.Update(entity);
         }
 
-        public int Save()
+        public async Task<int> Save()
         {
             return _context.SaveChanges();
         }

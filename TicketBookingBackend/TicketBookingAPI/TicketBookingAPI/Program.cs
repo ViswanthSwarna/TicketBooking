@@ -1,10 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TicketBookingAPI.Repository;
-using TicketBookingAPI.Services;
 using TicketBooking.Data;
-using Microsoft.AspNetCore.Diagnostics;
-using TicketBookingAPI.Middleware;
-using Microsoft.Extensions.Logging;
 using TicketBookingAPI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Assignment.Api.ServiceCollectionConfigurations;
