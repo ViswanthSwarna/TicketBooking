@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketBooking.Data;
 
@@ -11,9 +12,11 @@ using TicketBooking.Data;
 namespace TicketBookingData.Migrations
 {
     [DbContext(typeof(TicketManagemetContext))]
-    partial class TicketManagemetContextModelSnapshot : ModelSnapshot
+    [Migration("20230329121730_addedBusTestData")]
+    partial class addedBusTestData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,56 +225,6 @@ namespace TicketBookingData.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Ticket");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BusId = 1,
-                            Fare = 200.0,
-                            IsPaymentDone = true,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BusId = 2,
-                            Fare = 200.0,
-                            IsPaymentDone = false,
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BusId = 3,
-                            Fare = 200.0,
-                            IsPaymentDone = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BusId = 4,
-                            Fare = 200.0,
-                            IsPaymentDone = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BusId = 1,
-                            Fare = 200.0,
-                            IsPaymentDone = true,
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BusId = 3,
-                            Fare = 200.0,
-                            IsPaymentDone = false,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("TicketBooking.Domain.User", b =>

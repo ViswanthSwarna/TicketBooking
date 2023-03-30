@@ -27,28 +27,28 @@ namespace TicketBookingData
                 new City(){Id = 10, Name = "Kolhapur"},
                 new City(){Id = 11, Name = "Vijaywada"},
             };
-            //var buses = new Bus[]
-            //    {
-            //        new Bus(){Id = 1, BusName = "Rajdhani", Type = "Delux", SourceCityId = cities[0].Id, DestinationCityId = cities[1].Id, StartDateTime = new DateTime(2023,10,05), EndDateTime = new DateTime(2023, 10, 06)},
-            //        new Bus(){Id = 2, BusName = "Rajdhani001", Type = "SuperDelux", SourceCityId = cities[1].Id, DestinationCityId = cities[2].Id, StartDateTime = new DateTime(2023,11,05), EndDateTime = new DateTime(2023, 11, 06)}
-                    //new Bus(){Id = 3, BusName = "Rajdhani002", Type = "Delux", SourceCityId = cities[2].Id, SourceCity = cities[2], DestinationCityId = cities[3].Id, DestinationCity = cities[3], StartDateTime = new DateTime(2023,12,05), EndDateTime = new DateTime(2023, 12, 06)},
-                    //new Bus(){Id = 4, BusName = "Rajdhani003", Type = "SuperDelux", SourceCityId = cities[3].Id, SourceCity = cities[3], DestinationCityId = cities[4].Id, DestinationCity = cities[4], StartDateTime = new DateTime(2023,03,05), EndDateTime = new DateTime(2023, 04, 06)},
-                    //new Bus(){Id = 5, BusName = "Rajdhani004", Type = "Normal", SourceCityId = cities[4].Id, SourceCity = cities[4], DestinationCityId = cities[5].Id, DestinationCity = cities[5], StartDateTime = new DateTime(2023,04,05), EndDateTime = new DateTime(2023, 04, 06)},
-                    //new Bus(){Id = 6, BusName = "Rajdhani005", Type = "DeluxSleeper", SourceCityId = cities[5].Id, SourceCity = cities[5], DestinationCityId = cities[6].Id, DestinationCity = cities[6], StartDateTime = new DateTime(2023,05,05), EndDateTime = new DateTime(2023, 05, 06)}
-              //  };
-            //var tickets = new Ticket[]
-            //{
-            //    new Ticket() {Id = 1, Fare = 200, BusId = buses[0].Id, Bus = buses[0], User = users[0], IsPaymentDone = true},
-            //    new Ticket() {Id = 2, Fare = 200, BusId = buses[1].Id, Bus = buses[1], User = users[1], IsPaymentDone = false},
-            //    new Ticket() {Id = 3, Fare = 200, BusId = buses[2].Id, Bus = buses[2], User = users[2], IsPaymentDone = true},
-            //    new Ticket() {Id = 4, Fare = 200, BusId = buses[3].Id, Bus = buses[3], User = users[0], IsPaymentDone = false},
-            //    new Ticket() {Id = 5, Fare = 200, BusId = buses[0].Id, Bus = buses[0], User = users[2], IsPaymentDone = true},
-            //    new Ticket() {Id = 6, Fare = 200, BusId = buses[2].Id, Bus = buses[2], User = users[1], IsPaymentDone = false},
-            //};
+            var buses = new Bus[]
+                {
+                    new Bus(){Id = 1, BusName = "Rajdhani", Type = "Delux", SourceCityId = cities[0].Id, DestinationCityId = cities[1].Id, StartDateTime = new DateTime(2023,10,05), EndDateTime = new DateTime(2023, 10, 06)},
+                    new Bus(){Id = 2, BusName = "Rajdhani001", Type = "SuperDelux", SourceCityId = cities[1].Id, DestinationCityId = cities[2].Id, StartDateTime = new DateTime(2023,11,05), EndDateTime = new DateTime(2023, 11, 06)},
+                    new Bus(){Id = 3, BusName = "Rajdhani002", Type = "Delux", SourceCityId = cities[2].Id,DestinationCityId = cities[3].Id, StartDateTime = new DateTime(2023,12,05), EndDateTime = new DateTime(2023, 12, 06)},
+                    new Bus(){Id = 4, BusName = "Rajdhani003", Type = "SuperDelux", SourceCityId = cities[3].Id, DestinationCityId = cities[4].Id, StartDateTime = new DateTime(2023,03,05), EndDateTime = new DateTime(2023, 04, 06)},
+                    new Bus(){Id = 5, BusName = "Rajdhani004", Type = "Normal", SourceCityId = cities[4].Id, DestinationCityId = cities[5].Id, StartDateTime = new DateTime(2023,04,05), EndDateTime = new DateTime(2023, 04, 06)},
+                    new Bus(){Id = 6, BusName = "Rajdhani005", Type = "DeluxSleeper", SourceCityId = cities[5].Id, DestinationCityId = cities[6].Id, StartDateTime = new DateTime(2023,05,05), EndDateTime = new DateTime(2023, 05, 06)}
+                };
+            var tickets = new Ticket[]
+            {
+                new Ticket() {Id = 1, Fare = 200, BusId = buses[0].Id, UserId = users[0].Id, IsPaymentDone = true},
+                new Ticket() {Id = 2, Fare = 200, BusId = buses[1].Id, UserId = users[1].Id, IsPaymentDone = false},
+                new Ticket() {Id = 3, Fare = 200, BusId = buses[2].Id, UserId = users[2].Id, IsPaymentDone = true},
+                new Ticket() {Id = 4, Fare = 200, BusId = buses[3].Id, UserId = users[0].Id, IsPaymentDone = false},
+                new Ticket() {Id = 5, Fare = 200, BusId = buses[0].Id, UserId = users[2].Id, IsPaymentDone = true},
+                new Ticket() {Id = 6, Fare = 200, BusId = buses[2].Id, UserId = users[1].Id, IsPaymentDone = false},
+            };
             modelBuilder.Entity<User>().HasData(users);
             modelBuilder.Entity<City>().HasData(cities);
-           // modelBuilder.Entity<Bus>().HasData(buses);
-            //modelBuilder.Entity<Ticket>().HasData(tickets);
+            modelBuilder.Entity<Bus>().HasData(buses);
+            modelBuilder.Entity<Ticket>().HasData(tickets);
         }
     }
 }
