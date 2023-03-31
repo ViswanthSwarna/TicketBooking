@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketBooking.Data;
 
@@ -11,9 +12,11 @@ using TicketBooking.Data;
 namespace TicketBookingData.Migrations
 {
     [DbContext(typeof(TicketManagemetContext))]
-    partial class TicketManagemetContextModelSnapshot : ModelSnapshot
+    [Migration("20230331074033_addIdentityAuth")]
+    partial class addIdentityAuth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,9 +348,8 @@ namespace TicketBookingData.Migrations
                     b.Property<bool>("IsPaymentDone")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -364,7 +366,7 @@ namespace TicketBookingData.Migrations
                             BusId = 1,
                             Fare = 200.0,
                             IsPaymentDone = true,
-                            UserId = "3a7dca8c-4a86-45be-8e63-d505f7e2d13b"
+                            UserId = 1
                         },
                         new
                         {
@@ -372,7 +374,7 @@ namespace TicketBookingData.Migrations
                             BusId = 2,
                             Fare = 200.0,
                             IsPaymentDone = false,
-                            UserId = "dbf57150-2989-4771-ab6d-08c487470555"
+                            UserId = 2
                         },
                         new
                         {
@@ -380,7 +382,7 @@ namespace TicketBookingData.Migrations
                             BusId = 3,
                             Fare = 200.0,
                             IsPaymentDone = true,
-                            UserId = "a99eaff9-a21f-49f7-ae35-e8479b3d4d9e"
+                            UserId = 3
                         },
                         new
                         {
@@ -388,7 +390,7 @@ namespace TicketBookingData.Migrations
                             BusId = 4,
                             Fare = 200.0,
                             IsPaymentDone = false,
-                            UserId = "3a7dca8c-4a86-45be-8e63-d505f7e2d13b"
+                            UserId = 1
                         },
                         new
                         {
@@ -396,7 +398,7 @@ namespace TicketBookingData.Migrations
                             BusId = 1,
                             Fare = 200.0,
                             IsPaymentDone = true,
-                            UserId = "a99eaff9-a21f-49f7-ae35-e8479b3d4d9e"
+                            UserId = 3
                         },
                         new
                         {
@@ -404,11 +406,84 @@ namespace TicketBookingData.Migrations
                             BusId = 3,
                             Fare = 200.0,
                             IsPaymentDone = false,
-                            UserId = "dbf57150-2989-4771-ab6d-08c487470555"
+                            UserId = 2
                         });
                 });
 
             modelBuilder.Entity("TicketBooking.Domain.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsGuestUser")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsLoggedIn")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "R.Salunkhe@devon.nl",
+                            FullName = "Rakesh Salunkhe",
+                            IsAdmin = true,
+                            IsGuestUser = false,
+                            IsLoggedIn = false,
+                            Password = "123123",
+                            PhoneNumber = "860019111"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "M.Mummmm@devon.nl",
+                            FullName = "M M M",
+                            IsAdmin = false,
+                            IsGuestUser = false,
+                            IsLoggedIn = false,
+                            Password = "123123",
+                            PhoneNumber = "860019111"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "C.cccccc@devon.nl",
+                            FullName = "C C C",
+                            IsAdmin = true,
+                            IsGuestUser = false,
+                            IsLoggedIn = false,
+                            Password = "123123",
+                            PhoneNumber = "860019111"
+                        });
+                });
+
+            modelBuilder.Entity("TicketBookingData.Authentication.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -425,9 +500,6 @@ namespace TicketBookingData.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsGuestUser")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -474,56 +546,6 @@ namespace TicketBookingData.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3a7dca8c-4a86-45be-8e63-d505f7e2d13b",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1fe6bb6f-35cc-4cc1-9a53-8f34173f2323",
-                            Email = "R.Salunkhe@devon.nl",
-                            EmailConfirmed = false,
-                            IsGuestUser = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "Abc@123",
-                            PhoneNumber = "860019111",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f34e65f-6c38-41b6-82bf-766feaf46754",
-                            TwoFactorEnabled = false,
-                            UserName = "Rakesh Salunkhe"
-                        },
-                        new
-                        {
-                            Id = "dbf57150-2989-4771-ab6d-08c487470555",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ac2212df-ba96-4286-8846-6028d29f7b9f",
-                            Email = "M.Mummmm@devon.nl",
-                            EmailConfirmed = false,
-                            IsGuestUser = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "Abc@123",
-                            PhoneNumber = "860019111",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "02c96b82-bbb7-4f14-a6ca-696c294622b2",
-                            TwoFactorEnabled = false,
-                            UserName = "M M M"
-                        },
-                        new
-                        {
-                            Id = "a99eaff9-a21f-49f7-ae35-e8479b3d4d9e",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "4fa32be6-c010-45f8-9dc9-198409594c32",
-                            Email = "C.cccccc@devon.nl",
-                            EmailConfirmed = false,
-                            IsGuestUser = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "Abc@123",
-                            PhoneNumber = "860019111",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "7ddb8f1e-b50d-482e-a809-e8a902f23e0b",
-                            TwoFactorEnabled = false,
-                            UserName = "C C C"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -537,7 +559,7 @@ namespace TicketBookingData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("TicketBooking.Domain.User", null)
+                    b.HasOne("TicketBookingData.Authentication.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -546,7 +568,7 @@ namespace TicketBookingData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("TicketBooking.Domain.User", null)
+                    b.HasOne("TicketBookingData.Authentication.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -561,7 +583,7 @@ namespace TicketBookingData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TicketBooking.Domain.User", null)
+                    b.HasOne("TicketBookingData.Authentication.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -570,7 +592,7 @@ namespace TicketBookingData.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("TicketBooking.Domain.User", null)
+                    b.HasOne("TicketBookingData.Authentication.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

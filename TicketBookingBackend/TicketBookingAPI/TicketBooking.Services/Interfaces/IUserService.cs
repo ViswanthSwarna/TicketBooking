@@ -4,6 +4,6 @@ namespace TicketBooking.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<int> SaveUser(UserModel userModel);
+        Task<string> SaveUser(UserModel userModel);
     }
 }

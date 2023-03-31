@@ -12,7 +12,7 @@ namespace TicketBooking.Services.Classes
             _userRepository = userRepository;
         }
 
-        public async Task<int> SaveUser(UserModel userModel)
+        public async Task<string> SaveUser(UserModel userModel)
         {
             var res = await _userRepository.SaveUser(userModel);
             return res;

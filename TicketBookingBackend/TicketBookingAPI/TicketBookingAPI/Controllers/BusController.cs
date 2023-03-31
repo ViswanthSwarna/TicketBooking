@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TicketBooking.Models;
 using TicketBooking.Services.Interfaces;
+using TicketBookingDomain;
 
 namespace TicketBookingAPI.Controllers
 {
+    [Authorize(Roles =UserRoles.Admin)]
     [Route("api/[controller]")]
     [ApiController]
     public class BusController : ControllerBase

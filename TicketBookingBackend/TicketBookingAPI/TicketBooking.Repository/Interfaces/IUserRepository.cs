@@ -4,6 +4,6 @@ namespace TicketBooking.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        Task<int> SaveUser(UserModel userModel);
+        Task<string> SaveUser(UserModel userModel);
     }
 }
