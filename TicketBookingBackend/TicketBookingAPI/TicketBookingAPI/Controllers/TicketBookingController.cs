@@ -6,7 +6,6 @@ using TicketBooking.Services.Interfaces;
 
 namespace TicketBookingAPI.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TicketBookingController : Controller
@@ -58,6 +57,7 @@ namespace TicketBookingAPI.Controllers
             return Ok(bus);
         }
 
+        [Authorize]
         [HttpPost("SaveTicket")]
         public async Task<ActionResult<bool>> SaveTicket(TicketModel ticketModel)
         {
