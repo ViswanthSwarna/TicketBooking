@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TicketBooking.Data;
-using TicketBooking.Domain;
 using TicketBooking.Models;
 using TicketBooking.Repository.Interfaces;
+using TicketBooking.Domain;
 
 namespace TicketBooking.Repository.Classes
 {
@@ -17,7 +17,7 @@ namespace TicketBooking.Repository.Classes
             _mapper = mapper;
         }
 
-        public async Task<int> SaveUser(UserModel userModel) 
+        public async Task<string> SaveUser(UserModel userModel) 
         {
             var user = _mapper.Map<User>(userModel);
             _context.Entry(user).State = EntityState.Added;

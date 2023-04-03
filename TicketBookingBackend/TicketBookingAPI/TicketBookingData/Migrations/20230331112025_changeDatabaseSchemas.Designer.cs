@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketBooking.Data;
 
@@ -11,9 +12,11 @@ using TicketBooking.Data;
 namespace TicketBookingData.Migrations
 {
     [DbContext(typeof(TicketManagemetContext))]
-    partial class TicketManagemetContextModelSnapshot : ModelSnapshot
+    [Migration("20230331112025_changeDatabaseSchemas")]
+    partial class changeDatabaseSchemas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

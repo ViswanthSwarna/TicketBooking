@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using TicketBooking.Models;
 using TicketBooking.Services.Interfaces;
 
@@ -20,7 +22,7 @@ namespace TicketBookingAPI.Controllers
             _userService = userService;
         }
 
-        [HttpGet("/{pattern?}")]
+        [HttpGet("GetAllCities/{pattern?}")]
         public async Task<ActionResult<IEnumerable<CityModel>>> GetAllCities(string pattern)
         {
             if (string.IsNullOrWhiteSpace(pattern))
@@ -55,6 +57,7 @@ namespace TicketBookingAPI.Controllers
             return Ok(bus);
         }
 
+        [Authorize]
         [HttpPost("SaveTicket")]
         public async Task<ActionResult<bool>> SaveTicket(TicketModel ticketModel)
         {
@@ -66,14 +69,14 @@ namespace TicketBookingAPI.Controllers
         public async Task<ActionResult<bool>> SaveTicketForGuest(Dictionary<string, object> data)
         {
             bool res = false;
-            int userId = 0;
+            string userId = string.Empty;
             var userModel = (UserModel)data["UserModel"];
             var ticketModel = (TicketModel)data["TicketModel"];
             if (userModel != null)
             {
                 userId = await _userService.SaveUser(userModel);
             }
-            if (userId > 0)
+            if (userId.IsNullOrEmpty())
             {
                 ticketModel.UserId = userId;
                 res = await _ticketService.SaveTicket(ticketModel);

@@ -1,8 +1,8 @@
+using Assignment.Api.ServiceCollectionConfigurations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TicketBooking.Data;
 using TicketBookingAPI.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using Assignment.Api.ServiceCollectionConfigurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +28,7 @@ builder.AddDependencies();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
 
+builder.UseIdentityAuthentication();
 
 var app = builder.Build();
 
@@ -43,7 +44,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("CORS");
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

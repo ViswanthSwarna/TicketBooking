@@ -9,9 +9,9 @@ namespace TicketBookingData
         {
             var users = new User[]
                 {
-                    new User () {Id = 1, FullName = "Rakesh Salunkhe", Email = "R.Salunkhe@devon.nl",PhoneNumber = "860019111", IsAdmin = true, IsGuestUser = false, IsLoggedIn = false, Password = "123123"},
-                    new User () {Id = 2, FullName = "M M M", Email = "M.Mummmm@devon.nl",PhoneNumber = "860019111", IsAdmin = false, IsGuestUser = false, IsLoggedIn = false, Password = "123123"},
-                    new User () {Id = 3, FullName = "C C C", Email = "C.cccccc@devon.nl",PhoneNumber = "860019111", IsAdmin = true, IsGuestUser = false, IsLoggedIn = false, Password = "123123"}
+                    new User () {Id = Guid.NewGuid().ToString(), UserName = "Rakesh Salunkhe", Email = "R.Salunkhe@devon.nl",PhoneNumber = "860019111", IsGuestUser = false, PasswordHash = "Abc@123"},
+                    new User () {Id = Guid.NewGuid().ToString(), UserName = "M M M", Email = "M.Mummmm@devon.nl",PhoneNumber = "860019111", IsGuestUser = false, PasswordHash = "Abc@123"},
+                    new User () {Id = Guid.NewGuid().ToString(), UserName = "C C C", Email = "C.cccccc@devon.nl",PhoneNumber = "860019111", IsGuestUser = false, PasswordHash = "Abc@123"}
                  };
             var cities = new City[]
             {
