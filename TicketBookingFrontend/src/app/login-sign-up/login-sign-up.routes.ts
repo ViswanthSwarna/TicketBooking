@@ -1,5 +1,7 @@
-import { LoginSignUPComponent } from "./login-sign-up.component";
+import { LoginComponent } from "./login.component";
+import { SignUpComponent } from "./signup.component";
 
 export const loginSignUpAppRoutes = [
-    { path: '', component: LoginSignUPComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignUpComponent }
 ];
