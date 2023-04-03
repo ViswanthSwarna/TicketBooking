@@ -18,7 +18,7 @@ namespace TicketBookingAPI.Extensions
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
-            builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
         }
     }
 }

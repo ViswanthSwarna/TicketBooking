@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using TicketBooking.Domain;
 using TicketBooking.Models;
 using TicketBooking.Services.Interfaces;
@@ -14,29 +9,25 @@ namespace TicketBookingAPI.Controllers
 {
     public class AuthenticationController : ControllerBase
     {
-        private readonly UserManager<User> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
-        private readonly IAuthenticationServices _authenticationServices;
+        private readonly IAuthenticationService _authenticationService;
 
-        public AuthenticationController(IAuthenticationServices authenticationService,UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AuthenticationController(IAuthenticationService authenticationService, IConfiguration configuration)
         {
-            _authenticationServices = authenticationService;
-            this.userManager = userManager;
-            this.roleManager = roleManager;
+            _authenticationService = authenticationService;
             _configuration = configuration;
         }
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            return new OkObjectResult(await _authenticationServices.Login(model, _configuration));            
+            return Ok(await _authenticationService.Login(model, _configuration));
         }
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] UserModel model)
         {
-            var result = await _authenticationServices.RegisterUser(model);
+            var result = await _authenticationService.RegisterUser(model);
             if (result)
                 return Ok("User created successfully!");
             else
@@ -47,8 +38,8 @@ namespace TicketBookingAPI.Controllers
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] UserModel model)
         {
-            var result = await _authenticationServices.RegisterAdmin(model);
-            if(result)
+            var result = await _authenticationService.RegisterAdmin(model);
+            if (result)
                 return Ok("User created successfully!");
             else
                 return BadRequest("User creation failed");

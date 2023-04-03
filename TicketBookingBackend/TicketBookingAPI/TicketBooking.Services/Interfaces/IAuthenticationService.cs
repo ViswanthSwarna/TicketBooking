@@ -4,7 +4,7 @@ using TicketBooking.Models;
 
 namespace TicketBooking.Services.Interfaces
 {
-    public interface IAuthenticationServices
+    public interface IAuthenticationService
     {
         Task<bool> RegisterUser(UserModel userModel);
         Task<bool> RegisterAdmin(UserModel userModel);

@@ -13,11 +13,11 @@ using TicketBookingDomain;
 
 namespace TicketBooking.Services.Classes
 {
-    public class AuthenticationServices : IAuthenticationServices
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly IMapper _mapper;
         private IAuthenticationRepository _authenticationRepository;
-        public AuthenticationServices(IMapper mapper, IAuthenticationRepository authenticationRepository)
+        public AuthenticationService(IMapper mapper, IAuthenticationRepository authenticationRepository)
         {
             _mapper = mapper;
             _authenticationRepository = authenticationRepository;

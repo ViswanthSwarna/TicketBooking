@@ -9,7 +9,6 @@ namespace TicketBooking.Data
     public class TicketManagemetContext : IdentityDbContext<User>
     {
         public DbSet<City> City { get; set; }
-        //public DbSet<User> Users { get; set; }
         public DbSet<Bus> Bus { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
         public TicketManagemetContext(DbContextOptions<TicketManagemetContext> options) : base(options) { }
