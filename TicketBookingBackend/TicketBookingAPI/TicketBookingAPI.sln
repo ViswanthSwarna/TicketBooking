@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBookingDomain", "Tick
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBooking.Repository", "TicketBooking.Repository\TicketBooking.Repository.csproj", "{222C74A9-FE1B-4E44-B2D1-280649FA43FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketBooking.Services", "TicketBooking.Services\TicketBooking.Services.csproj", "{D8A61585-CDED-4A94-BF30-71204DA5CF2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBooking.Services", "TicketBooking.Services\TicketBooking.Services.csproj", "{D8A61585-CDED-4A94-BF30-71204DA5CF2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketBooking.Models", "TicketBooking.Models\TicketBooking.Models.csproj", "{510D6C3B-35BA-4117-A719-4B88D80F0012}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketBooking.Models", "TicketBooking.Models\TicketBooking.Models.csproj", "{510D6C3B-35BA-4117-A719-4B88D80F0012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketBooking.Test", "..\TicketBooking.Test\TicketBooking.Test.csproj", "{A3B48625-27F8-4F4A-B7AF-B43498A84BF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{510D6C3B-35BA-4117-A719-4B88D80F0012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{510D6C3B-35BA-4117-A719-4B88D80F0012}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{510D6C3B-35BA-4117-A719-4B88D80F0012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3B48625-27F8-4F4A-B7AF-B43498A84BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B48625-27F8-4F4A-B7AF-B43498A84BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B48625-27F8-4F4A-B7AF-B43498A84BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B48625-27F8-4F4A-B7AF-B43498A84BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
